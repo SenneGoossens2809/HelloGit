@@ -1,11 +1,13 @@
 package be.vdab.git.winkel;
 
+import java.math.BigDecimal;
+
 public class Product {
 
     private String omschrijving;
-    private double prijs;
+    private BigDecimal prijs;
 
-    public Product(String omschrijving, double prijs) {
+    public Product(String omschrijving, BigDecimal prijs) {
         this.omschrijving = omschrijving;
         this.prijs = prijs;
     }
@@ -14,7 +16,15 @@ public class Product {
         return omschrijving;
     }
 
-    public double getPrijs() {
+    public BigDecimal getPrijs() {
         return prijs;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "omschrijving='" + omschrijving + '\'' +
+                ", prijs=" + prijs +
+                '}' + "\n";
     }
 }
