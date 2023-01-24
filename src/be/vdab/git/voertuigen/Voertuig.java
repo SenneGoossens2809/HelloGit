@@ -1,26 +1,34 @@
 package be.vdab.git.voertuigen;
 
-public class Voertuig {
+public abstract class Voertuig {
 
-    private String polishouder;
+    private String polishouder = "onbepaald";
     private float kostprijs;
     private int pk;
     private float gemVerbruik;
-    private String nummerplaat;
+    private String nummerplaat = "onbepaald";
 
     public Voertuig() {
     }
 
     public Voertuig(String polishouder, float kostprijs, int pk, float gemVerbruik, String nummerplaat) {
-        setGegevens(polishouder, nummerplaat, kostprijs, gemVerbruik, pk);
+        setKostprijs(kostprijs);
+        setPk(pk);
+        setGemVerbruik(gemVerbruik);
+        setPolishouder(polishouder);
+        setNummerplaat(nummerplaat);
     }
+
+    public abstract double getKyotoScore();
 
     public String getPolishouder() {
         return polishouder;
     }
 
     public void setPolishouder(String polishouder) {
-        this.polishouder = polishouder;
+        if (polishouder != null && !polishouder.isEmpty()) {
+            this.polishouder = polishouder;
+        }
     }
 
     public float getKostprijs() {
@@ -28,7 +36,9 @@ public class Voertuig {
     }
 
     public void setKostprijs(float kostprijs) {
-        this.kostprijs = kostprijs;
+        if (kostprijs > 0) {
+            this.kostprijs = kostprijs;
+        }
     }
 
     public int getPk() {
@@ -36,7 +46,9 @@ public class Voertuig {
     }
 
     public void setPk(int pk) {
-        this.pk = pk;
+        if (pk > 0) {
+            this.pk = pk;
+        }this.pk = pk;
     }
 
     public float getGemVerbruik() {
@@ -44,7 +56,9 @@ public class Voertuig {
     }
 
     public void setGemVerbruik(float gemVerbruik) {
-        this.gemVerbruik = gemVerbruik;
+        if (gemVerbruik > 0) {
+            this.gemVerbruik = gemVerbruik;
+        }
     }
 
     public String getNummerplaat() {
@@ -52,26 +66,9 @@ public class Voertuig {
     }
 
     public void setNummerplaat(String nummerplaat) {
-        this.nummerplaat = nummerplaat;
-    }
-
-    private void setGegevens(String polishouder, String nummerplaat, float kostprijs, float gemVerbruik, int pk) {
-        if (polishouder == null || nummerplaat == null) {
-            System.out.println("Polishouder en nummerplaat kan niet null zijn!");
-            return;
+        if (nummerplaat != null && !nummerplaat.isEmpty()) {
+            this.nummerplaat = nummerplaat;
         }
-
-        this.polishouder = polishouder;
-        this.nummerplaat = nummerplaat;
-
-        if (pk <= 0 || kostprijs <= 0 || gemVerbruik <= 0) {
-            System.out.println("Nummerieke gevens moete groter zijn dan 0!");
-            return;
-        }
-
-        this.gemVerbruik = gemVerbruik;
-        this.kostprijs = kostprijs;
-        this.pk = pk;
     }
 
     @Override
